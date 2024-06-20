@@ -1,0 +1,50 @@
+Dwarka Sector 21 0.0
+Dwarka Sector 8 1.7
+Dwarka Sector 9 2.7
+Dwarka Sector 10 3.8
+Dwarka Sector 11 4.8
+Dwarka Sector 12 5.8
+Dwarka Sector 13 6.7
+Dwarka Sector 14 7.6
+Dwarka 9.1
+Dwarka Mor 10.2
+Nawada 11.4
+Uttam Nagar West 12.4
+Uttam Nagar East 13.4
+Janak Puri West 14.7
+Janak Puri East 15.7
+Tilak Nagar 16.7
+Subhash Nagar 17.6
+Tagore Garden 18.5
+Rajouri Garden 19.6
+Ramesh Nagar 20.6
+Moti Nagar 21.8
+Kirti Nagar 22.8
+Shadipur 23.5
+Patel Nagar 24.8
+Rajendra Place 25.7
+Karol Bagh 26.7
+Jhandewalan 27.9
+R K Ashram Marg 28.9
+Rajiv Chowk 30.1
+Barakhamba 30.8
+Mandi House 31.8
+Supreme Court 32.6
+Indraprastha 33.4
+Yamuna Bank 35.2
+Akshardham 36.5
+Mayur Vihar Phase-1 38.3
+Mayur Vihar Extention 39.5
+New Ashok Nagar 40.4
+Noida Sector 15 41.4
+Noida Sector 16 42.5
+Noida Sector 18 43.6
+Botanical Garden 44.7
+Golf Course 45.9
+Noida City Center 47.2
+Noida Sector 34 48.1
+Noida Sector 52 49.3
+Noida Sector 61 50.5
+Noida Sector 59 51.5
+Noida Sector 62 52.7
+Noida Electronic City 53.9

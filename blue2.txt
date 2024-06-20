@@ -1,0 +1,8 @@
+Yamuna Bank 0.0
+Laxmi Nagar 1.3
+Nirman Vihar 2.4
+Preet Vihar 3.4
+Karkar Duma 4.6
+Anand Vihar 5.7
+Kaushambi 6.5
+Vaishali 8.1

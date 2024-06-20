@@ -1,0 +1,11 @@
+Sector 55-66 (Rapid Metro) 0.0
+Sector 54 Chowk (Rapid Metro) 1.1	
+Sector 53-54 (Rapid Metro) 2.6
+Sector 42-43 (Rapid Metro) 3.9
+DLF Phase 1 (Rapid Metro) 5.5
+Sikandarpur (Rapid Metro) 6.6
+DLF Phase 2 (Rapid Metro) 7.3
+Belvedere Towers (Rapid Metro) 8.0
+Cyber City (Rapid Metro) 8.6
+Moulsari Avenue (Rapid Metro) 9.2
+DLF Phase 3 (Rapid Metro) 10.0

@@ -1,0 +1,38 @@
+Majlis Park 0.0
+Azadpur 2.1
+Shalimar Bagh 3.7
+Netaji Subash Place 5.1
+Shakurpur 6.3
+Punjabi Bagh West 7.7
+ESI BASAI DARAPUR 10.2
+Rajouri Garden 11.3
+Maya Puri 12.8
+Naraina Vihar 14.3
+Delhi Cantt 16.1
+Durgabai Deshmukh South Campus 19.7
+Sir Vishweshwaraiah Moti Bagh 21.0
+Bhikaji Cama Place 22.6
+Sarojini Nagar 23.8
+Dilli Haat INA 24.9
+South Extension 26.1
+Lajpat Nagar 27.7
+Vinobapuri 29.1
+Ashram 30.3
+Sarai Kale Khan Hazrat Nizamuddin 32.2
+Mayur Vihar Phase-1 35.8
+Mayur Vihar Pocket I 36.6
+Trilokpuri Sanjay Lake 37.9
+Vinod Nagar East 38.7
+Mandawali - West Vinod Nagar 39.3
+IP Extension 40.3
+Anand Vihar 41.9
+Karkar Duma 42.9
+Karkarduma Court 44.0
+Krishna Nagar 44.7
+East Azad Nagar 45.7
+Welcome 46.8
+Jaffrabad 48.0
+Maujpur 49.1
+Gokulpuri 50.4
+Johri Enclave 51.7
+Shiv Vihar 52.6

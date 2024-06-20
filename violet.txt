@@ -1,0 +1,34 @@
+Kashmere Gate 0.0
+Lal Quila 1.5
+Jama Masjid 2.3
+Delhi Gate 3.7
+ITO 5.0
+Mandi House 5.8
+Janpath 7.2
+Central Secretariat 8.5
+Khan Market 10.6
+Jawaharlal Nehru Stadium 12.0
+Jangpura 12.9
+Lajpat Nagar 14.4
+Moolchand 15.1
+Kailash Colony 16.4
+Nehru Place 17.4
+Kalkaji Mandir 18.2
+Govind Puri 18.9
+Okhla 20.0
+Jasola 20.9
+Sarita Vihar 22.1
+Mohan Estate 23.3
+Tughlakabad 25.2
+Badarpur Border 26.3
+Sarai 28.8
+N.H.P.C. Chowk 30.4
+Mewala Maharajpur 31.3
+Sector 28 Faridabad 32.5	
+Badkal Mor 34.2
+Old Faridabad 35.4
+Neelam Chowk Ajronda 37.0
+Bata Chowk 38.3
+Escorts Mujesar 40.1
+Sant Surdas - Sihi 41.8
+Raja Nahar Singh 43.5

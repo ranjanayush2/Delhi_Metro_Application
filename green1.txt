@@ -1,0 +1,21 @@
+Inderlok 0.0
+Ashok Park Main 1.4
+Punjabi Bagh 2.3
+Shivaji Park 3.9
+Madipur 5.0
+Paschim Vihar (East) 5.7
+Paschim Vihar (West) 6.7
+Peera Garhi 7.6
+Udyog Nagar 8.8
+Maharaja Surajmal Stadium 9.5
+Nangloi 10.3
+Nangloi Railway Station 11.2
+Rajdhani Park 12.4
+Mundka 13.7
+Mundka Industrial Area (MIA) 15.0
+Ghevra Metro station 17.1
+Tikri Kalan 18.9
+Tikri Border 20.2	
+Pandit Shree Ram Sharma 21.5
+Bahdurgarh City 23.0
+Brigadier Hoshiar Singh 24.8

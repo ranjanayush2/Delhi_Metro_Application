@@ -1,0 +1,37 @@
+Samaypur Badli 0.0
+Rohini Sector 18-19 0.8
+Haiderpur Badli Mor 2.1
+Jahangirpuri 3.4
+Adarsh Nagar 4.7
+Azadpur 6.2
+Model Town 7.6
+Guru Tegh Bahadur Nagar 9.0
+Vishwavidyalaya 9.8
+Vidhan Sabha 10.8
+Civil Lines 12.1
+Kashmere Gate 13.2
+Chandni Chowk 14.3
+Chawri Bazar 15.3
+New Delhi 16.1
+Rajiv Chowk 17.2
+Patel Chowk 18.5
+Central Secretariat 19.4
+Udyog Bhawan 19.7
+Lok Kalyan Marg 21.3
+Jorbagh 22.5
+Dilli Haat INA 23.8
+AIIMS 24.6
+Green Park 25.6
+Hauz Khas 27.4
+Malviya Nagar 29.1
+Saket 30.0
+Qutab Minar 31.7
+Chhattarpur 33.0
+SultanpuGhitorni 34.6
+Ghitorni 35.9
+Arjan Garh 38.6
+Guru Dronacharya 40.9
+Sikandarpur 41.9
+MG Road 43.1
+IFFCO Chowk 44.2
+Huda City Centre 45.7

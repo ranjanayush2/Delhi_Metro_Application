@@ -1,0 +1,29 @@
+Shaheed Sthal(New Bus Adda) 0.0
+Hindon River 1.0
+Arthala 2.5
+Mohan Nagar 3.2
+Shyam park 4.5
+Major Mohit Sharma 5.7
+Raj Bagh 6.9
+Shaheed Nagar 8.2
+Dilshad Garden 9.4
+Jhil mil 10.3
+Mansarovar Park 11.4
+Shahdara 12.5
+Welcome 13.7
+Seelampur 14.8
+Shastri Park 16.4
+Kashmiri Gate 18.5
+Tis Hazari 19.7
+Pul Bangash 20.6
+Pratap Nagar 21.4
+Shastri Nagar 23.1
+Inderlok 24.3
+Kanhaiya Nagar 25.5
+Keshav Puram 26.2
+Netaji Subhash Place 27.4
+Kohat Enclave 28.6
+Pitam Pura 29.6
+Rohini East 30.4
+Rohini West 31.7
+Rithala 32.7

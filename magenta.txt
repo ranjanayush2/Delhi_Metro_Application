@@ -1,0 +1,25 @@
+Janak Puri West 0.0
+Dabri Mor - Janakpuri South 2.0
+Dashrath Puri 3.1
+Palam 4.6
+Sadar Bazaar Cantonment 7.2
+Terminal 1 IGI Airport 8.9
+Shankar Vihar 10.7
+Vasant Vihar 12.8
+Munirka 14.0
+RK Puram 15.4
+IIT Delhi 16.3
+Hauz Khas 17.5
+Panchsheel Park 19.0
+Chirag Delhi 19.9
+Greater Kailash 20.8
+Nehru Enclave 22.1
+Kalkaji Mandir 23.0
+Okhla NSIC 23.8
+Sukhdev Vihar 24.9
+JAMIA MILLIA ISLAMIA 26.1
+Okhla Vihar 26.6
+Jasola Vihar Shaheen Bagh 28.4
+Kalindi Kunj 29.8
+Okhla Bird Sanctuary 31.4
+Botanical Garden 33.1
