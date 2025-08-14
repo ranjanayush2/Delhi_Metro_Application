@@ -1,28 +1,38 @@
 // Written by : Ayush Ranjan
-#include <bits/stdc++.h>
-#include <thread>
-#include <mutex>
-#include <sstream>
+
+#include <bits/stdc++.h>   // Includes all standard libraries
+#include <thread>          // For multithreading support
+#include <mutex>           // For thread synchronization
+#include <sstream>         // For string stream operations
 using namespace std;
 
 typedef long long ll;
-map<string, ll> m; 
-vector<pair<ll, float>> v[10001];
-map<ll, string> station; 
-map<ll, string> clr; 
-set<ll> intersec; 
-vector<string> v1 = {"red.txt", "blue1.txt", "blue2.txt", "green1.txt", "green2.txt", "airport_express.txt", "aqualine.txt", "gray.txt", "magenta.txt", "pink.txt", "rapid.txt", "violet.txt", "yellow.txt"};
-std::mutex print_mtx; // For thread-safe printing
 
-struct Pair {
-    std::string key;
-    float value;
+// Data structures to store metro system information
+map<string, ll> m;                   // Maps station name to unique ID
+vector<pair<ll, float>> v[10001];    // Adjacency list: {connected station ID, distance}
+map<ll, string> station;             // Maps station ID back to station name
+map<ll, string> clr;                 // Maps station ID to its metro line color
+set<ll> intersec;                    // Stores intersection stations
+vector<string> v1 = {                // Files representing each metro line
+    "red.txt", "blue1.txt", "blue2.txt", "green1.txt", "green2.txt", 
+    "airport_express.txt", "aqualine.txt", "gray.txt", "magenta.txt", 
+    "pink.txt", "rapid.txt", "violet.txt", "yellow.txt"
 };
 
+std::mutex print_mtx; // Mutex for thread-safe printing of output
+
+// Helper struct for reading station data
+struct Pair {
+    std::string key; // Station name
+    float value;     // Distance marker in file
+};
+
+// Reads station data from metro line files and assigns unique IDs
 void consmap() {
     ll cnt = 0;
     for (ll i = 0; i < v1.size(); i++) {
-        string trc = "";
+        string trc = ""; // Extracts line color from file name
         for (ll j = 0; j < v1[i].size(); j++) {
             if (v1[i][j] == '.') break;
             trc.push_back(v1[i][j]);
@@ -36,6 +46,7 @@ void consmap() {
                 if (lastSpace != std::string::npos) {
                     pair.value = std::stof(line.substr(lastSpace + 1));
                     pair.key = line.substr(0, lastSpace);
+                    // Assign station ID if not already assigned
                     if (m.find(pair.key) == m.end()) {
                         m[pair.key] = cnt;
                         station[cnt] = pair.key;
@@ -49,6 +60,7 @@ void consmap() {
     }
 }
 
+// Builds adjacency list (graph) representing metro connections
 void addedge() {
     for (ll i = 0; i < v1.size(); i++) {
         ll cn = 0;
@@ -63,6 +75,7 @@ void addedge() {
                 if (lastSpace != std::string::npos) {   
                     pair.value = std::stof(line.substr(lastSpace + 1));
                     pair.key = line.substr(0, lastSpace);
+                    // Connect consecutive stations on the same line
                     if (cn >= 1) {
                         v[m[prev_string]].push_back({m[pair.key], pair.value - prev_value});
                         v[m[pair.key]].push_back({m[prev_string], pair.value - prev_value});
@@ -77,6 +90,7 @@ void addedge() {
     }
 }
 
+// Displays route details from source to destination
 void disp(ll src, ll dest, ll par[], std::ostringstream &out) {
     vector<ll> v3;
     stack<ll> st;
@@ -94,6 +108,7 @@ void disp(ll src, ll dest, ll par[], std::ostringstream &out) {
     }
     out << "\n";
 
+    // Count interchanges (line switches)
     ll interchange = 0;
     for (ll i = 1; i < v3.size(); i++) {
         if (intersec.find(v3[i]) != intersec.end()) {
@@ -104,6 +119,7 @@ void disp(ll src, ll dest, ll par[], std::ostringstream &out) {
     }
     out << "Number of intersections is " << interchange << "\n";
 
+    // List interchange details
     for (ll i = 1; i < v3.size(); i++) {
         if (intersec.find(v3[i]) != intersec.end()) {
             if (i + 1 < v3.size()) {
@@ -117,6 +133,7 @@ void disp(ll src, ll dest, ll par[], std::ostringstream &out) {
     }
 }
 
+// Dijkstra's Algorithm → Finds shortest & cheapest route
 void dijkstra(ll src, ll dest, std::ostringstream &out) {
     long double dist[10001];
     ll vis[10001];
@@ -149,6 +166,7 @@ void dijkstra(ll src, ll dest, std::ostringstream &out) {
     disp(src, dest, par, out);
 }
 
+// BFS → Finds route with minimum number of stations
 void bfs(ll src, ll dest, std::ostringstream &out) {
     ll vis[10001], par[10001];
     for (ll i = 0; i < 10001; i++) { par[i] = -1; vis[i] = 0; }
@@ -170,24 +188,28 @@ void bfs(ll src, ll dest, std::ostringstream &out) {
     disp(src, dest, par, out);
 }
 
+// Thread wrapper for running Dijkstra
 void run_dijkstra_thread(ll src, ll dest) {
     std::ostringstream buffer;
     dijkstra(src, dest, buffer);
-    std::lock_guard<std::mutex> lock(print_mtx);
+    std::lock_guard<std::mutex> lock(print_mtx); // Prevents mixed output from threads
     std::cout << buffer.str();
 }
 
+// Thread wrapper for running BFS
 void run_bfs_thread(ll src, ll dest) {
     std::ostringstream buffer;
     bfs(src, dest, buffer);
-    std::lock_guard<std::mutex> lock(print_mtx);
+    std::lock_guard<std::mutex> lock(print_mtx); // Prevents mixed output from threads
     std::cout << buffer.str();
 }
 
 int main() {
+    // Build metro map from files
     consmap();
     addedge();
 
+    // Define intersection stations
     intersec.insert(m["Kashmiri Gate"]);
     intersec.insert(m["Rajiv Chowk"]);
     intersec.insert(m["Inderlok"]);
@@ -224,6 +246,7 @@ int main() {
         cout << "Please enter destination station: ";
         getline(cin, destination);
 
+        // Validate station names
         if (m.find(source) == m.end() || m.find(destination) == m.end()) {
             cout << "Invalid input. Please enter valid stations.\n";
             continue;
@@ -234,6 +257,7 @@ int main() {
         int choice;
         cin >> choice;
 
+        // Run chosen algorithm in its own thread
         if (choice == 1) {
             std::thread t(run_dijkstra_thread, m[source], m[destination]);
             t.join();
