@@ -1,38 +1,43 @@
 // Written by : Ayush Ranjan
+// Delhi Metro Routing Application with Multithreading for faster route computation
 
-#include <bits/stdc++.h>   // Includes all standard libraries
-#include <thread>          // For multithreading support
-#include <mutex>           // For thread synchronization
-#include <sstream>         // For string stream operations
+#include <bits/stdc++.h>
+#include <thread>   // For std::thread
+#include <mutex>    // For std::mutex and std::lock_guard
+#include <sstream>  // For std::ostringstream (thread-safe output buffering)
+
 using namespace std;
 
 typedef long long ll;
 
-// Data structures to store metro system information
-map<string, ll> m;                   // Maps station name to unique ID
-vector<pair<ll, float>> v[10001];    // Adjacency list: {connected station ID, distance}
-map<ll, string> station;             // Maps station ID back to station name
-map<ll, string> clr;                 // Maps station ID to its metro line color
-set<ll> intersec;                    // Stores intersection stations
-vector<string> v1 = {                // Files representing each metro line
+// Maps to store station information
+map<string, ll> m;                        // Station name -> station ID
+vector<pair<ll, float>> v[10001];         // Adjacency list: station ID -> [(neighbor ID, distance)]
+map<ll, string> station;                  // Station ID -> station name
+map<ll, string> clr;                      // Station ID -> metro line color
+set<ll> intersec;                          // Set of intersection station IDs
+
+// Metro line files
+vector<string> v1 = {
     "red.txt", "blue1.txt", "blue2.txt", "green1.txt", "green2.txt", 
     "airport_express.txt", "aqualine.txt", "gray.txt", "magenta.txt", 
     "pink.txt", "rapid.txt", "violet.txt", "yellow.txt"
 };
 
-std::mutex print_mtx; // Mutex for thread-safe printing of output
+// Mutex for safe console printing in multithreaded environment
+std::mutex print_mtx; 
 
-// Helper struct for reading station data
+// Helper struct to store station name + distance
 struct Pair {
-    std::string key; // Station name
-    float value;     // Distance marker in file
+    std::string key;
+    float value;
 };
 
-// Reads station data from metro line files and assigns unique IDs
+// Step 1: Construct map of station names to IDs and line colors
 void consmap() {
     ll cnt = 0;
     for (ll i = 0; i < v1.size(); i++) {
-        string trc = ""; // Extracts line color from file name
+        string trc = "";
         for (ll j = 0; j < v1[i].size(); j++) {
             if (v1[i][j] == '.') break;
             trc.push_back(v1[i][j]);
@@ -46,7 +51,6 @@ void consmap() {
                 if (lastSpace != std::string::npos) {
                     pair.value = std::stof(line.substr(lastSpace + 1));
                     pair.key = line.substr(0, lastSpace);
-                    // Assign station ID if not already assigned
                     if (m.find(pair.key) == m.end()) {
                         m[pair.key] = cnt;
                         station[cnt] = pair.key;
@@ -60,7 +64,7 @@ void consmap() {
     }
 }
 
-// Builds adjacency list (graph) representing metro connections
+// Step 2: Build adjacency list from station files
 void addedge() {
     for (ll i = 0; i < v1.size(); i++) {
         ll cn = 0;
@@ -75,8 +79,8 @@ void addedge() {
                 if (lastSpace != std::string::npos) {   
                     pair.value = std::stof(line.substr(lastSpace + 1));
                     pair.key = line.substr(0, lastSpace);
-                    // Connect consecutive stations on the same line
                     if (cn >= 1) {
+                        // Add edges in both directions
                         v[m[prev_string]].push_back({m[pair.key], pair.value - prev_value});
                         v[m[pair.key]].push_back({m[prev_string], pair.value - prev_value});
                     }
@@ -90,7 +94,7 @@ void addedge() {
     }
 }
 
-// Displays route details from source to destination
+// Step 3: Display path and intersections
 void disp(ll src, ll dest, ll par[], std::ostringstream &out) {
     vector<ll> v3;
     stack<ll> st;
@@ -108,7 +112,6 @@ void disp(ll src, ll dest, ll par[], std::ostringstream &out) {
     }
     out << "\n";
 
-    // Count interchanges (line switches)
     ll interchange = 0;
     for (ll i = 1; i < v3.size(); i++) {
         if (intersec.find(v3[i]) != intersec.end()) {
@@ -119,7 +122,6 @@ void disp(ll src, ll dest, ll par[], std::ostringstream &out) {
     }
     out << "Number of intersections is " << interchange << "\n";
 
-    // List interchange details
     for (ll i = 1; i < v3.size(); i++) {
         if (intersec.find(v3[i]) != intersec.end()) {
             if (i + 1 < v3.size()) {
@@ -133,7 +135,7 @@ void disp(ll src, ll dest, ll par[], std::ostringstream &out) {
     }
 }
 
-// Dijkstra's Algorithm → Finds shortest & cheapest route
+// Step 4: Dijkstra for shortest-cost path
 void dijkstra(ll src, ll dest, std::ostringstream &out) {
     long double dist[10001];
     ll vis[10001];
@@ -166,7 +168,7 @@ void dijkstra(ll src, ll dest, std::ostringstream &out) {
     disp(src, dest, par, out);
 }
 
-// BFS → Finds route with minimum number of stations
+// Step 5: BFS for minimum-station path
 void bfs(ll src, ll dest, std::ostringstream &out) {
     ll vis[10001], par[10001];
     for (ll i = 0; i < 10001; i++) { par[i] = -1; vis[i] = 0; }
@@ -188,28 +190,27 @@ void bfs(ll src, ll dest, std::ostringstream &out) {
     disp(src, dest, par, out);
 }
 
-// Thread wrapper for running Dijkstra
+// Threaded wrappers
 void run_dijkstra_thread(ll src, ll dest) {
     std::ostringstream buffer;
     dijkstra(src, dest, buffer);
-    std::lock_guard<std::mutex> lock(print_mtx); // Prevents mixed output from threads
-    std::cout << buffer.str();
+    std::lock_guard<std::mutex> lock(print_mtx);
+    std::cout << "\n[Dijkstra - Cost-efficient Route]\n" << buffer.str();
 }
 
-// Thread wrapper for running BFS
 void run_bfs_thread(ll src, ll dest) {
     std::ostringstream buffer;
     bfs(src, dest, buffer);
-    std::lock_guard<std::mutex> lock(print_mtx); // Prevents mixed output from threads
-    std::cout << buffer.str();
+    std::lock_guard<std::mutex> lock(print_mtx);
+    std::cout << "\n[BFS - Minimum Stations Route]\n" << buffer.str();
 }
 
+// Main function with true concurrency
 int main() {
-    // Build metro map from files
     consmap();
     addedge();
 
-    // Define intersection stations
+    // Predefined intersections
     intersec.insert(m["Kashmiri Gate"]);
     intersec.insert(m["Rajiv Chowk"]);
     intersec.insert(m["Inderlok"]);
@@ -246,27 +247,22 @@ int main() {
         cout << "Please enter destination station: ";
         getline(cin, destination);
 
-        // Validate station names
         if (m.find(source) == m.end() || m.find(destination) == m.end()) {
             cout << "Invalid input. Please enter valid stations.\n";
             continue;
         }
 
-        cout << "Press 1 for shortest and cheapest route\n";
-        cout << "Press 2 for route with minimum number of stations\n";
-        int choice;
-        cin >> choice;
+        cout << "\n--- Computing both routes in parallel ---\n";
 
-        // Run chosen algorithm in its own thread
-        if (choice == 1) {
-            std::thread t(run_dijkstra_thread, m[source], m[destination]);
-            t.join();
-        } else {
-            std::thread t(run_bfs_thread, m[source], m[destination]);
-            t.join();
-        }
+        // Run both algorithms concurrently
+        thread t1(run_dijkstra_thread, m[source], m[destination]);
+        thread t2(run_bfs_thread, m[source], m[destination]);
 
-        cout << "Do you wish to go back to main menu? (y/n): ";
+        // Wait for both threads to finish
+        t1.join();
+        t2.join();
+
+        cout << "\nDo you wish to go back to main menu? (y/n): ";
         cin >> ch;
     }
     cout << "Thanks for using Delhi Metro. Have a good day!\n";
